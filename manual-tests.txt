@@ -61,4 +61,33 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should display "Developer" for the user name.
 
+Module 4:
+
+## Ticket: build.sh should return non-zero when compilation fails
+
+Goal:
+Ensure build.sh exits with a non-zero status code if compilation fails,
+and exits with 0 when compilation succeeds.
+
+Steps:
+1) Add a compile error to src/edu/cvtc/itsd/Main.java.
+   Example: add the line:
+   THIS_WILL_NOT_COMPILE
+
+2) Run:
+   bash ./build.sh
+   echo $?
+
+3) Observe the exit code.
+
+4) Remove the compile error from Main.java.
+
+5) Run:
+   bash ./build.sh
+   echo $?
+
+Expected Results:
+- When the compile error is present, echo $? returns a non-zero value (observed: 1).
+- After fixing the compile error, echo $? returns 0.
+
 
