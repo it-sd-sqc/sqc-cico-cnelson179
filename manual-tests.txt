@@ -62,13 +62,11 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Should display "Developer" for the user name.
 
 
-Module 5 Ticket: Card input validation
+Module 5 Ticket: Ticket 502 - Close application when window closes
 
-Test Case:
-Enter letters or more than 8 digits in the card field.
+Steps:
+1. Run the application.
+2. Click the window close button (X).
 
 Expected Result:
-Input should only accept numeric digits and limit input to 8 characters.
-
-Actual Result:
-Program prevents invalid input and limits card numbers to 8 digits.
+The application fully exits and the console prints "Clean shutdown".
