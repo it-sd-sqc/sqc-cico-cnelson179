@@ -61,33 +61,59 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should display "Developer" for the user name.
 
-Module 4:
+Module 4: Ticket 402
 
-## Ticket: build.sh should return non-zero when compilation fails
+Preconditions:
+- Application is running.
+- You are on the screen that contains the "Developer Card Number" JTextField.
+- CARD_NUMBER_MAX = <PUT_MAX_LENGTH_HERE>
 
-Goal:
-Ensure build.sh exits with a non-zero status code if compilation fails,
-and exits with 0 when compilation succeeds.
-
-Steps:
-1) Add a compile error to src/edu/cvtc/itsd/Main.java.
-   Example: add the line:
-   THIS_WILL_NOT_COMPILE
-
-2) Run:
-   bash ./build.sh
-   echo $?
-
-3) Observe the exit code.
-
-4) Remove the compile error from Main.java.
-
-5) Run:
-   bash ./build.sh
-   echo $?
+Test Steps:
+1) Click inside the Developer Card Number text field.
+2) Type digits until you reach CARD_NUMBER_MAX digits.
+3) Try typing 3 more digits after reaching the limit.
+4) Copy a long string of digits longer than CARD_NUMBER_MAX (ex: 999999999999999) and paste it into the field.
+5) Select all text in the field and paste a string longer than CARD_NUMBER_MAX again.
+6) Try typing non-digit characters (letters/symbols) into the field.
 
 Expected Results:
-- When the compile error is present, echo $? returns a non-zero value (observed: 1).
-- After fixing the compile error, echo $? returns 0.
+- The field accepts digits up to CARD_NUMBER_MAX.
+- After CARD_NUMBER_MAX digits, additional digits are not inserted.
+- Pasting longer-than-max input results in the field containing no more than CARD_NUMBER_MAX digits (extra characters are rejected).
+- Non-digit characters are rejected (nothing inserts).
+
+Ticket 402 – Card Number Length Validation
+
+Steps:
+1. Launch the CiCo application.
+2. Click in the card number input field.
+3. Type a number longer than 8 digits (example: 123456789).
+4. Observe the behavior of the text field.
+
+Expected Result:
+The field should prevent input beyond 8 digits.
+Only numeric characters should be accepted.
+
+Actual Result:
+The field stops accepting characters after 8 digits and ignores invalid input.
 
 
+Module 5 Ticket: Ticket 502 - Close application when window closes
+
+Steps:
+1. Run the application.
+2. Click the window close button (X).
+
+Expected Result:
+The application fully exits and the console prints "Clean shutdown".
+
+Ticket 502 Manual Test
+
+1. Run the application.
+2. The CiCo window should appear.
+3. Close the window using the X button.
+4. Verify the application completely exits.
+5. Verify the terminal shows "Clean shutdown".
+
+Expected Result:
+Application closes completely when the window is closed.

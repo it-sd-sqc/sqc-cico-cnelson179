@@ -37,11 +37,30 @@ public class Main {
   private static class InputFilter extends DocumentFilter {
     private static final int MAX_LENGTH = 8;
 
+    private boolean isValid(String s) {
+      if (s == null) return false;
+      if (s.length() > MAX_LENGTH) return false;
+
+      // Allow empty while editing
+      for (int i = 0; i < s.length(); i++) {
+        if (!Character.isDigit(s.charAt(i))) return false;
+      }
+      return true;
+    }
+
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      if (fb.getDocument() == null || stringToAdd == null) {
+        Toolkit.getDefaultToolkit().beep();
+        return;
+      }
+
+      String current = fb.getDocument().getText(0, fb.getDocument().getLength());
+      String candidate = current.substring(0, offset) + stringToAdd + current.substring(offset);
+
+      if (isValid(candidate)) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
       else {
@@ -53,7 +72,18 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      if (fb.getDocument() == null) {
+        Toolkit.getDefaultToolkit().beep();
+        return;
+      }
+
+      if (stringToAdd == null) stringToAdd = "";
+
+      String current = fb.getDocument().getText(0, fb.getDocument().getLength());
+      String candidate =
+          current.substring(0, offset) + stringToAdd + current.substring(offset + lengthToDelete);
+
+      if (isValid(candidate)) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
