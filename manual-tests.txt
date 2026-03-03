@@ -61,26 +61,22 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should display "Developer" for the user name.
 
-Module 4: Ticket 402
+Module 4: Ticket: 402
+Title: Card number input should be limited to 8 digits
 
-Preconditions:
-- Application is running.
-- You are on the screen that contains the "Developer Card Number" JTextField.
-- CARD_NUMBER_MAX = <PUT_MAX_LENGTH_HERE>
+Steps:
+1. Launch the CiCo application.
+2. Click inside the card number input field.
+3. Type: 12345678
+4. Verify that all 8 digits appear in the field.
+5. Attempt to type another digit: 9
+6. Clear the field.
+7. Type: 123456789
 
-Test Steps:
-1) Click inside the Developer Card Number text field.
-2) Type digits until you reach CARD_NUMBER_MAX digits.
-3) Try typing 3 more digits after reaching the limit.
-4) Copy a long string of digits longer than CARD_NUMBER_MAX (ex: 999999999999999) and paste it into the field.
-5) Select all text in the field and paste a string longer than CARD_NUMBER_MAX again.
-6) Try typing non-digit characters (letters/symbols) into the field.
-
-Expected Results:
-- The field accepts digits up to CARD_NUMBER_MAX.
-- After CARD_NUMBER_MAX digits, additional digits are not inserted.
-- Pasting longer-than-max input results in the field containing no more than CARD_NUMBER_MAX digits (extra characters are rejected).
-- Non-digit characters are rejected (nothing inserts).
+Expected Result:
+The field should only contain 12345678.
+The 9th digit should not be accepted.
+Only the first 8 digits should appear.
 
 Ticket 402 – Card Number Length Validation
 
