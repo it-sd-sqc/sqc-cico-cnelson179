@@ -62,3 +62,13 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Should display "Developer" for the user name.
 
 
+Module 5 Ticket: Card input validation
+
+Test Case:
+Enter letters or more than 8 digits in the card field.
+
+Expected Result:
+Input should only accept numeric digits and limit input to 8 characters.
+
+Actual Result:
+Program prevents invalid input and limits card numbers to 8 digits.
