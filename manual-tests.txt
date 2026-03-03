@@ -70,3 +70,14 @@ Steps:
 
 Expected Result:
 The application fully exits and the console prints "Clean shutdown".
+
+Ticket 502 Manual Test
+
+1. Run the application.
+2. The CiCo window should appear.
+3. Close the window using the X button.
+4. Verify the application completely exits.
+5. Verify the terminal shows "Clean shutdown".
+
+Expected Result:
+Application closes completely when the window is closed.
