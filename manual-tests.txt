@@ -82,6 +82,21 @@ Expected Results:
 - Pasting longer-than-max input results in the field containing no more than CARD_NUMBER_MAX digits (extra characters are rejected).
 - Non-digit characters are rejected (nothing inserts).
 
+Ticket 402 – Card Number Length Validation
+
+Steps:
+1. Launch the CiCo application.
+2. Click in the card number input field.
+3. Type a number longer than 8 digits (example: 123456789).
+4. Observe the behavior of the text field.
+
+Expected Result:
+The field should prevent input beyond 8 digits.
+Only numeric characters should be accepted.
+
+Actual Result:
+The field stops accepting characters after 8 digits and ignores invalid input.
+
 
 Module 5 Ticket: Ticket 502 - Close application when window closes
 
